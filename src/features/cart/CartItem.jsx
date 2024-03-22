@@ -1,4 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/prop-types */
 function CartItem({ item }) {
+  // eslint-disable-next-line no-unused-vars
   const { pizzaId, name, quantity, totalPrice } = item;
 
   return (
