@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
+import { Form, redirect } from "react-router-dom";
+import { createOrder } from "../../services/apiRestaurant";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -39,8 +41,8 @@ function CreateOrder() {
   return (
     <div>
       <h2>Ready to order? let's go!</h2>
-
-      <form>
+      {/* <Form method="POST" action="/order/new" */}
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -72,11 +74,31 @@ function CreateOrder() {
         </div>
 
         <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button>Order now</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
+}
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  // convert it into an object using entries
+  const data = Object.fromEntries(formData);
+  console.log(data);
+
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "on",
+  };
+  //importing create ordder function from apirestaurant // and the we redirect the page to order/ID
+  const newOrder = await createOrder(order);
+  // newOrder(which is a new object) is the result of calling the createOrder function from the api,
+  // createOrder conatins the id which will be placed in the url and will be used to redirect the user to the page of the neworder
+
+  return redirect(`/order/${newOrder.id}`);
 }
 
 export default CreateOrder;
