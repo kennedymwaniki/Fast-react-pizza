@@ -16,4 +16,4 @@ function LinkButton({children, to}) {
     )
 }
   
-export default LinkButton
+export default LinkButton;
