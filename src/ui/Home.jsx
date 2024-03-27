@@ -1,17 +1,28 @@
- import CreateUser from "../features/user/CreateUser";
+/* eslint-disable no-unused-vars */
+import CreateUser from '../features/user/CreateUser';
+import { useSelector } from 'react-redux';
+import Button from './Button';
 function Home() {
+  const username = useSelector((store) => store.user.username);
+
   return (
-    <div className="my-10 sm:my-16 text-xl text-center px-4">
-      <h1 className="text-center text-xl font-semibold mb-8 md:text-3xl">
+    <div className="my-10 px-4 text-center text-xl sm:my-16">
+      <h1 className="mb-8 text-center text-xl font-semibold md:text-3xl">
         The best pizza.
         <br />
         <span className="text-yellow-500">
-        Straight out of the oven, straight to you.
+          Straight out of the oven, straight to you.
         </span>
       </h1>
-          <CreateUser/>
+      {username === '' ? (
+        <CreateUser />
+      ) : (
+        <Button to="/menu" type="primary">
+          Continue ordering,{username}
+        </Button>
+      )}
     </div>
-  ); 
+  );
 }
 
 export default Home;

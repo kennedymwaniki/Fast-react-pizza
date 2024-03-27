@@ -1,4 +1,4 @@
-import {createSlice} from 'react-redux'
+import { createSlice } from '@reduxjs/toolkit';
 // function getPosition() {
 //   return new Promise(function (resolve, reject) {
 //     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -21,18 +21,19 @@ import {createSlice} from 'react-redux'
 //   return { position, address };
 // }
 
- const initialState = {
+const initialState = {
   username: '',
- }
+};
 
- const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: { 
-     updateName(state,action){
-        state.userName = action.payload;
-     },
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    updateName(state, action) {
+      state.username = action.payload;
     },
- });
+  },
+});
 
- export const {updateName} = userSlice.actions;
+export const { updateName } = userSlice.actions;
+export default userSlice.reducer;
