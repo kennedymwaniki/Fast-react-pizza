@@ -19,12 +19,12 @@ const cartSlice = createSlice({
   reducers: {
     // eslint-disable-next-line no-unused-vars
     addItem(state, action) {
-      //payload needs to be equal to the new utem added
+      //payload needs to be equal to the new utem added(neItem)
       // whatever we get from calling this reducer in the menu item/ the receied parameter is the payload
       state.cart.push(action.payload);
     },
     deleteItem(state, action) {
-      //payload needs to be the pizzaId that we can remove
+      //payload needs to be the pizzaId that we can remove(pizzaId)
       state.cart.filter((item) => item.pizzaId !== action.payload);
     },
     increaseItemQuantity(state, action) {
