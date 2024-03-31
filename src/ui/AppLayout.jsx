@@ -18,7 +18,7 @@ function AppLayout() {
 
 
       <main className="max-w-3xl mx-auto">
-        {/* <h1>content</h1> */}
+        {/**/}
         <Outlet />
       </main>
 
