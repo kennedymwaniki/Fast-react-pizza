@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import { useFetcher } from 'react-router-dom';
 import Button from '../../ui/Button';
